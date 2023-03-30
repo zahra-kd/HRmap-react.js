@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    background-color: #e9f0fa;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.background {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../public/image/company.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1, h2, h3, h4, span{
+    color: #063970;
 }
-
-.App-link {
-  color: #61dafb;
+h5, h6{
+    color: #1976d2;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.color_primary{
+    color: #063970 !important;
+}
+.box {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    padding: 15px;
+    border-radius: 6px;
+}
+.btn-outline-primary{
+    color: #1976d2 !important;
+    border: 1px solid #1976d2 !important;
+}
+.btn-outline-primary:hover {
+    background-color: #1976d2 !important;
+    color: white !important;
+}
+.modalClose {
+    color: #e9343d;
+    border: 1px solid #e9343d;
+}
+.modalClose:hover {
+    background-color: #e9343d;
+    color: white;
+}
+.profile {
+    height: 410px;
+    overflow: auto;
+}
+.logoutBtn {
+    border:none;
+    background-color: white;
 }

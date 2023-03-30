@@ -1,0 +1,32 @@
+
+.ProfilePicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid #e8f4fff1;
+}
+.designation {
+    font-size: 14px;
+}
+.nav-item {
+    transition: padding-left 0.5s;
+}
+.nav-link {
+    color:  #063970 !important;
+}
+.nav-item:hover {
+    padding-left: 8px;
+    width: 100%;
+}
+.nav-item:hover .nav-link, .nav-item:hover .bi, .accordionLink:hover, .asideIcone {
+    color: #1976d2 !important;
+}
+.accordionLink {
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+    color:  #063970;
+    font-size: 13px;
+}
+
+
