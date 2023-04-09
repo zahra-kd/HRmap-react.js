@@ -15,6 +15,7 @@ import ResetPassword from './Pages/Authentication/ResetPassword';
 import AuthContext from './Context/Context';
 import { useEffect, useState } from 'react';
 import AllMyLeaves from './Pages/Leave/AllMyLeaves';
+import MyDocRequestHistory from './Pages/Document/MyDocRequestHistory';
 
 
 
@@ -45,13 +46,14 @@ function App() {
           <Route path='all-my-leaves' element={<AllMyLeaves/>}/>
           <Route path='all-documents' element={<Document/>}/>
           <Route path='request-document' element={<RequestDocument/>}/>
+          <Route path='all-my-documents' element={<MyDocRequestHistory/>}/>
           </>
           :<>
           <Route path='' element={<Profile/>}/>
           <Route path='request-leave' element={<MyLeave/>}/>
           <Route path='all-my-leaves' element={<AllMyLeaves/>}/>
-          <Route path='all-documents' element={<Document/>}/>
           <Route path='request-document' element={<RequestDocument/>}/>
+          <Route path='all-my-documents' element={<MyDocRequestHistory/>}/>
           </>
         }
       </Route>

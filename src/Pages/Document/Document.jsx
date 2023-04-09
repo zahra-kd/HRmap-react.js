@@ -1,25 +1,23 @@
-import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip } from "@mui/material";
-import { red } from '@mui/material/colors';
+import { IconButton, Tooltip } from "@mui/material";
 import { indigo } from '@mui/material/colors';
-import CloseIcon from '@mui/icons-material/Close';
-import CheckIcon from '@mui/icons-material/Check';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ModalDocument from "./ModalDocument";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "../../Config/Constants";
 
 const Document = () => {
-    const documentData =  [{
-        "id": 1,
-        "first_name": "Colline",
-        "last_name": "Hebborn",
-    }, {
-        "id": 2,
-        "first_name": "Kendre",
-        "last_name": "Largen",
-    }, {
-        "id": 3,
-        "first_name": "Janella",
-        "last_name": "Cunah",
-    }]
+    const [requests, setRequests] = useState([]);
+    const [departements, setDepartements] = useState([]);
+
+    useEffect(() => {
+        axios.get(API_URL + 'documents').then(response => {
+            setRequests(response.data.documents);
+            setDepartements(response.data.departements);
+        }).catch(error => {
+            console.log(error)
+        })}, [])
+
     return(
         <div className="col-9">
             <h3 className="mb-4">Documents</h3>
@@ -28,8 +26,8 @@ const Document = () => {
                 <table class="table table-hover table-sm">
                     <thead>
                         <tr>
-                            <th scope="col" style={{ color: "#063970" }}>#User ID</th>
-                            <th scope="col" style={{ color: "#063970" }}>Title</th>
+                            <th scope="col" style={{ color: "#063970" }}>Name</th>
+                            <th scope="col" style={{ color: "#063970" }}>Doc Type</th>
                             <th scope="col" style={{ color: "#063970" }}>Request Date</th>
                             <th scope="col" style={{ color: "#063970" }}>Description</th>
                             <th scope="col" style={{ color: "#063970" }}>Status</th>
@@ -37,31 +35,21 @@ const Document = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {documentData.map((row) => (
-                            <tr key={row.id}>
-                                <th scope="row">{row.id}</th>
-                                <td>{row.first_name}</td>
-                                <td>{row.first_name}</td>
-                                <td>{row.first_name}</td>
-                                <td>{row.first_name}</td>
+                        {requests.map((request) => (
+                            <tr key={request.id}>
+                                <th scope="row">{request.employee?.first_name}</th>
+                                <td>{request.document_type}</td>
+                                <td>{request.request_date}</td>
+                                <td>{request.description}</td>
+                                <td>{request.status}</td>
                                 <td>
-                                    <Tooltip placement="top" title="approve">
-                                        <IconButton color="success">
-                                            <CheckIcon/>
-                                        </IconButton>
-                                    </Tooltip>
-                                    <Tooltip placement="top" title="reject">
-                                        <IconButton sx={{ color: red["A700"]}} >
-                                            <CloseIcon />
-                                        </IconButton>
-                                    </Tooltip>
                                     <Tooltip placement="top" title="view detail">
-                                        <IconButton sx={{ color: indigo["500"]}} data-bs-toggle="modal" data-bs-target="#ModalDocument" >
+                                        <IconButton sx={{ color: indigo["500"]}} data-bs-toggle="modal" data-bs-target={`#ModalDocument-${request.id}`} >
                                             <VisibilityIcon />
-                                            <ModalDocument/>
                                         </IconButton>
                                     </Tooltip>
                                 </td>
+                                <ModalDocument request={request} departements={departements}  key={request.id}/>
                             </tr>
                         ))}
                     </tbody>

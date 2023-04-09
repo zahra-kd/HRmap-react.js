@@ -67,17 +67,15 @@ const Aside = () =>{
                                             </Link>
                                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionDoc">
                                                 <div class="accordion-body p-1">
-                                                    <Link className="accordionLink ms-3" to={"all-documents"}><i class="asideIcone bi bi-chevron-double-right me-1"></i>All Documents</Link>
+                                                    <Link className="accordionLink ms-3" to={"all-documents"}><i class="asideIcone bi bi-chevron-double-right me-1"></i>All Doc</Link>
                                                     <Link className="accordionLink ms-3" to={"request-document"}><i class="asideIcone bi bi-chevron-double-right me-1"></i> Request Doc</Link>
+                                                    <Link className="accordionLink ms-3" to={"all-my-documents"}><i class="asideIcone bi bi-chevron-double-right me-1"></i> My Doc</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div> 
                                 </li>
                             </> : <>
-
-                        
-                        
                         <li className="nav-item">
                             <Link className="nav-link" to={"profile"}><i class="asideIcone bi bi-person-fill me-3"></i>Profile</Link>
                         </li>
@@ -104,8 +102,8 @@ const Aside = () =>{
                                     </Link>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionDoc">
                                         <div class="accordion-body p-1">
-                                            <Link className="accordionLink ms-3" to={"all-documents"}><i class="asideIcone bi bi-chevron-double-right me-1"></i>All Documents</Link>
                                             <Link className="accordionLink ms-3" to={"request-document"}><i class="asideIcone bi bi-chevron-double-right me-1"></i> Request Doc</Link>
+                                            <Link className="accordionLink ms-3" to={"all-my-documents"}><i class="asideIcone bi bi-chevron-double-right me-1"></i> My Doc</Link>
                                         </div>
                                     </div>
                                 </div>

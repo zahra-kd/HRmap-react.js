@@ -18,7 +18,7 @@ const AllMyLeaves = () =>{
         <div className="col-9">
             <h3 className="mb-4">Leaves</h3>
             <div className="box">
-                <h5>All Leaves :</h5>
+                <h5>All My Leaves :</h5>
                 <table class="table table-hover table-sm">
                     <thead>
                         <tr>
@@ -42,7 +42,6 @@ const AllMyLeaves = () =>{
                     </tbody>
                 </table>
             </div>
-
         </div>
     )
 }

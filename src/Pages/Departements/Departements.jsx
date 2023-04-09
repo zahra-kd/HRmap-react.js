@@ -52,21 +52,30 @@ const Departements = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                        {departements.map((row) => (
-                            
-                            <tr key={row.id}>
-                                <th scope="row">{row.name}</th>
-                                <td>{row.name}</td>
-                                <td>{row.employees?.length}</td>
-                                <td>
-                                    <Tooltip placement="top" title="delete">
-                                        <IconButton sx={{ color: red["A700"]}} onClick={() => deleteDepartement(row.id)} >
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </Tooltip>
-                                </td>
-                            </tr>
-                        ))}
+                        {departements.map((departement) => {
+                            const headOfDepartement = departement.employees?.find(
+                                (employee)=> employee.job_title === "head of departement"
+                            )
+                            return(
+                                <tr key={departement.id}>
+                                    <th scope="row">{departement.name}</th>
+                                    <td>
+                                        {
+                                            headOfDepartement ? `${headOfDepartement.first_name} ${headOfDepartement.last_name}`
+                                            : "not chosen yet"
+                                        }
+                                    </td>
+                                    <td>{departement.employees?.length}</td>
+                                    <td>
+                                        <Tooltip placement="top" title="delete">
+                                            <IconButton sx={{ color: red["A700"]}} onClick={() => deleteDepartement(departement.id)} >
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>

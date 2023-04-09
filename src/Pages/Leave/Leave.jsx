@@ -19,13 +19,6 @@ const Leave = () =>{
             console.log(error)
         })}, [])
     
-    // const deleteLeave = (id) => {
-    //     axios.delete(API_URL + 'delete-leave/' + id).then(response =>{
-    //         window.location.reload();
-    //     }).catch(error => {
-    //         console.log(error.response.data.error);
-    //     })
-    // }
     return(
         <div className="col-9">
             <h3 className="mb-4">Leaves</h3>

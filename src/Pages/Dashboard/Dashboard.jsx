@@ -9,6 +9,9 @@ const Dashboard = () => {
     const [totalEmployees, setTotalEmployees] = useState("");
     const [leaves, setLeaves] = useState([]);
     const [pendingLeaves, setPendingLeaves] = useState("");
+    const [documents, setDocuments] = useState([]);
+    const [pendingDocuments, setPendingDocuments] = useState("")
+
     useEffect(() => {
         axios.get(API_URL + 'departements').then(response => {
             setTotalDepartements(response.data.total);
@@ -32,12 +35,15 @@ const Dashboard = () => {
             console.log(error)
         })}, [])
 
-    
-    const documentData =  [{
-        "id": 1,
-        "first_name": "Colline",
-        "last_name": "Hebborn",
-    }]
+        useEffect(() => {
+            axios.get(API_URL + 'pending-documents').then(response => {
+                setDocuments(response.data.pending);
+                console.log(response.data.pending);
+                setPendingDocuments(response.data.total);
+            }).catch(error => {
+                console.log(error)
+            })}, [])
+
     return (
         <div className="col-9">
             <h3 className="mb-4">Dashboard</h3>
@@ -102,14 +108,21 @@ const Dashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {leaves.map((leave) => (
+                                {leaves.length>0 ? 
+                                    leaves.map((leave) => (
                                     <tr key={leave.id}>
                                         <th scope="row">{leave.employee.first_name}</th>
                                         <td>{leave.leave_type}</td>
                                         <td>{leave.days}</td>
                                         <td>{leave.status}</td>
+                                    </tr>)) : 
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>no record found</td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
-                                ))}
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -125,13 +138,19 @@ const Dashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {documentData.map((row) => (
-                                    <tr key={row.id}>
+                                {documents.length>0 ?
+                                    documents.map((document) => (
+                                    <tr key={document.id}>
+                                        <th scope="row">{document.employee.first_name}</th>
+                                        <td>{document.document_type}</td>
+                                        <td>{document.status}</td>
+                                    </tr>)) :
+                                    <tr>
                                         <th scope="row"></th>
-                                        <td>no record</td>
+                                        <td>no record found</td>
                                         <td></td>
                                     </tr>
-                                ))}
+                                    }
                             </tbody>
                         </table>
                     </div>

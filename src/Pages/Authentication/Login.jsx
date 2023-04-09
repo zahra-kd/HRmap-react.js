@@ -19,9 +19,9 @@ const Login = () =>{
             setUser(res.data.user);
             localStorage.setItem("user", JSON.stringify(res.data.user));
             navigate("/menu");
-        } catch (err) {
-            console.log('error login:',err);
-            setMessage("user not found");
+        } catch (error) {
+            console.log('error login:',error);
+            setMessage(error.response.data.error);
         }
     };
 
