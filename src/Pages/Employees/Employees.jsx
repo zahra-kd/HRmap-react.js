@@ -5,21 +5,35 @@ import EditEmployee from "./EditEmployee";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL, API_URL_PICTURE } from "../../Config/Constants";
+import Pagination from "../../Components/Pagination/Pagination";
 
 
 
 const Employees = () =>{
-    const [employees, setEmployees] = useState([])
+    const [employees, setEmployees] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(2);
+    const [totalRecords, setTotalRecords] = useState(0);
 
     useEffect(() => {
+        setLoading(true)
         axios.get(API_URL + 'users').then(response => {
-            setEmployees(response.data.users)
+            setEmployees(response.data.users);
+            setTotalRecords(response.data.users.length);
+            setLoading(false);
         }).catch(error => {
             console.log(error)
         })
     }, []);
     
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const currentRecords = employees.slice(firstIndex, lastIndex);
 
+    const paginate = (currentPage) => setCurrentPage(currentPage);
+    const prevPage = () => setCurrentPage(currentPage - 1);
+    const nextPage = () => setCurrentPage(currentPage + 1);
 
     return(
         <div className="col-9">
@@ -46,7 +60,7 @@ const Employees = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee) => (
+                        {!loading ? currentRecords.map((employee) => (
                             <tr key={employee.id}>
                                 <td scope="row"><Avatar alt="employee's picture" src={API_URL_PICTURE + employee.picture} /></td>
                                 <td className="align-middle">{employee.first_name}</td>
@@ -64,9 +78,17 @@ const Employees = () =>{
                                 </td>
                                 <EditEmployee employee={employee} key={employee.id}/>
                             </tr>
-                        ))}
+                        )) : "Loadind..."}
                     </tbody>
                 </table>
+                <Pagination 
+                    recordsPerPage={recordsPerPage}
+                    totalRecords={totalRecords}
+                    currentPage={currentPage}
+                    paginate={paginate}
+                    prevPage={prevPage}
+                    nextPage={nextPage}
+                />
             </div>
         </div>
     )

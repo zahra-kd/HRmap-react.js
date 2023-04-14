@@ -19,8 +19,8 @@ const NavBar = () =>{
                     <img className='me-2 rounded-circle ' height='30px' width='30px' src="image/avatar.png" alt="employee" />
                     }
                     
-                    { user && <span className="me-2">Hi, {user?.first_name.charAt(0).toUpperCase() + user?.first_name.slice(1)}</span>}
-                    <i className="bi bi-bell" style={{ color: "#063970" }}></i>
+                    { user && <span className="me-2">Hi, {user?.first_name.charAt(0).toUpperCase() + user?.first_name.slice(1)} !</span>}
+                    {/* <i className="bi bi-bell" style={{ color: "#063970" }}></i> */}
                 </div>
             </div>
         </nav>
