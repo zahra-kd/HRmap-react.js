@@ -6,7 +6,7 @@ import AuthContext from "../../Context/Context";
 const leaves = ['Sick Leave', 'Casual Leave', 'Maternity Leave', 'Unpaid Leave', 'Bereavement Leave']
 const MyLeave = () => {
     const { user, setUser } = useContext(AuthContext);
-    const [leaveType, setLeaveType] = useState('');
+    const [leaveType, setLeaveType] = useState('Sick Leave');
     const [days , setDays] = useState('');
     const [startDate , setStartDate] = useState('');
     const [endDate , setEndDate] = useState('');
@@ -49,8 +49,8 @@ const MyLeave = () => {
                 <h5 className="mb-4">Create Leave :</h5>
                 <form onSubmit={requestLeave} action="" method="post" encType="multipart/form-data" className="row col-9 mx-auto">
                     <div className="mb-3 col-6">
-                        <select className="form-select" onChange={e => setLeaveType(e.target.value)} aria-label="Default select example">
-                            <option disabled selected>Leave Type</option>
+                        <select className="form-select" onChange={e => setLeaveType(e.target.value)} aria-label="Default select example" defaultValue="Sick Leave">
+                            <option disabled>Leave Type</option>
                             {leaves.map((elt, index) => (
                                 <option key={index} value={elt}>{elt}</option>
                             ))}
@@ -66,7 +66,7 @@ const MyLeave = () => {
                         <input type="date" className="form-control" onChange={e => setEndDate(e.target.value)}  title="end date"/>
                     </div>
                     <div className="mb-3 col-12">
-                        <input type="file" className="form-control" onChange={e => setEndDate(e.target.files[0])} title="file format: .png or .jpeg"/>
+                        <input type="file" className="form-control" onChange={e => setPicture(e.target.files[0])} title="file format: .png or .jpeg"/>
                     </div>
                     <div className="mb-3 col-12">
                         <textarea className="form-control" onChange={e => setDescription(e.target.value)} placeholder="Description" style={{ height: "100px" }} required></textarea>
